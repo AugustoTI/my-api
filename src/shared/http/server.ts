@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
 import 'express-async-errors'
@@ -13,6 +14,6 @@ server.get('/', (req, res) => {
   })
 })
 
-server.listen(3000, () => {
-  console.log('http://localhost:3000')
+server.listen(process.env.PORT, () => {
+  console.log(`http://localhost:${process.env.PORT}`)
 })
