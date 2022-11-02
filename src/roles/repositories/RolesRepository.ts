@@ -16,4 +16,8 @@ export class RoleRepository {
 
     return role
   }
+
+  findAll() {
+    return this._roles
+  }
 }
