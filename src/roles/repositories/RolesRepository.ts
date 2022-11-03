@@ -17,6 +17,10 @@ export class RoleRepository {
     return role
   }
 
+  findByName(name: string) {
+    return this._roles.find(role => role.name === name)
+  }
+
   findAll() {
     return this._roles
   }
