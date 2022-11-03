@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rimraf dist && yarn tsc",
+    "start": "node dist/server.js",
+    "build": "rimraf dist && node esbuild.config.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "dev": "ts-node-dev -r tsconfig-paths/register --inspect --respawn --transpile-only --ignore-watch node_modules src/shared/http/server.ts"
+    "dev": "ts-node-dev -r tsconfig-paths/register --inspect --respawn --ignore-watch node_modules src/shared/http/server.ts"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +20,7 @@
     "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.42.0",
     "@typescript-eslint/parser": "^5.42.0",
+    "esbuild": "^0.15.12",
     "eslint": "^8.26.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
