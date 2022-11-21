@@ -13,7 +13,9 @@ server.use(express.json())
 server.use(routes)
 server.use((error: Error, req: Request, res: Response, next: NextFunction) => {
   if (error instanceof AppError) {
-    res.status(error.status).json({ status: 'error', message: error.message })
+    return res
+      .status(error.status)
+      .json({ status: 'error', message: error.message })
   }
 
   console.log(error)

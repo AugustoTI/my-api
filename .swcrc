@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json.schemastore.org/swcrc",
+  "jsc": {
+    "baseUrl": "./",
+    "paths": {
+      "@roles/*": ["src/roles/*"],
+      "@users/*": ["src/users/*"],
+      "@shared/*": ["src/shared/*"]
+    },
+    "target": "es2020",
+    "parser": {
+      "syntax": "typescript",
+      "decorators": true,
+      "dynamicImport": true
+    },
+    "transform": {
+      "decoratorMetadata": true,
+      "legacyDecorator": true
+    },
+    "loose": true
+  },
+  "module": {
+    "type": "commonjs",
+    "strict": true,
+    "lazy": true
+  },
+  "sourceMaps": true
+}
