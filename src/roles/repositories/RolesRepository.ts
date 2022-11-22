@@ -1,5 +1,6 @@
 import { Role } from '@roles/entities/role'
 
+// DTO = Data Transfer Object
 interface CreateRoleDTO {
   name: string
 }

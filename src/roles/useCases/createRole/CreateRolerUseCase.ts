@@ -1,6 +1,7 @@
 import { RoleRepository } from '@roles/repositories/RolesRepository'
 import { AppError } from '@shared/errors/AppError'
 
+// DTO = Data Transfer Object
 interface CreateRoleDTO {
   name: string
 }
