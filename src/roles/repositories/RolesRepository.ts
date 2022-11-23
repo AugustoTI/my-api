@@ -6,7 +6,21 @@ interface CreateRoleDTO {
 }
 
 export class RoleRepository {
-  private _roles: Role[] = []
+  private _roles: Role[]
+  private static INSTANCE: RoleRepository
+
+  private constructor() {
+    this._roles = []
+  }
+
+  static getInstance() {
+    if (!RoleRepository.INSTANCE) {
+      RoleRepository.INSTANCE = new RoleRepository()
+      return RoleRepository.INSTANCE
+    }
+
+    return RoleRepository.INSTANCE
+  }
 
   create({ name }: CreateRoleDTO) {
     const role = new Role()
