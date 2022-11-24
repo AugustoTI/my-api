@@ -7,6 +7,7 @@ import swaggerUI from 'swagger-ui-express'
 import { routes } from './routes'
 import { AppError } from '@shared/errors/AppError'
 import swaggerFile from '../../swagger.json'
+import { dataSource } from '@shared/typeorm'
 
 const server = express()
 
@@ -30,6 +31,13 @@ server.use((error: Error, req: Request, res: Response, next: NextFunction) => {
   })
 })
 
-server.listen(process.env.PORT, () => {
-  console.log(`http://localhost:${process.env.PORT}`)
-})
+dataSource
+  .initialize()
+  .then(() => {
+    server.listen(process.env.PORT, () => {
+      console.log(`http://localhost:${process.env.PORT}`)
+    })
+  })
+  .catch(err => {
+    console.log(err)
+  })
