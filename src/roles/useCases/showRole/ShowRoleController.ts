@@ -1,7 +1,8 @@
 import { Request, Response } from 'express'
+import { ShowRoleUseCase } from './ShowRoleUseCase'
 
 export class ShowRoleController {
-  constructor(private _showRoleUseCase) {}
+  constructor(private _showRoleUseCase: ShowRoleUseCase) {}
 
   async handle(req: Request, res: Response) {
     const { id } = req.params
