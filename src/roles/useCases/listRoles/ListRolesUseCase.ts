@@ -1,11 +1,16 @@
 import { RoleRepository } from '@roles/repositories/RolesRepository'
 
+interface ListRolesUseCaseParams {
+  page: number
+  limit: number
+}
+
 export class ListRolesUseCase {
   constructor(private _rolesRepository: RoleRepository) {}
 
-  execute() {
-    const roles = this._rolesRepository.findAll()
-
-    return roles
+  async execute({ limit, page }: ListRolesUseCaseParams) {
+    const take = limit
+    const skip = (Number(page) - 1) * take
+    return this._rolesRepository.findAll({ page, skip, take })
   }
 }
