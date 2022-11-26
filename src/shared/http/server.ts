@@ -8,6 +8,7 @@ import { routes } from './routes'
 import { AppError } from '@shared/errors/AppError'
 import swaggerFile from '../../swagger.json'
 import { dataSource } from '@shared/typeorm'
+import { errors } from 'celebrate'
 
 const server = express()
 
@@ -17,6 +18,7 @@ server.use(express.json())
 server.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerFile))
 
 server.use(routes)
+server.use(errors())
 server.use((error: Error, req: Request, res: Response, next: NextFunction) => {
   if (error instanceof AppError) {
     return res
