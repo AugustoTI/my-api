@@ -175,6 +175,57 @@
             "description": "Role not found."
           }
         }
+      },
+      "get": {
+        "tags": ["Roles"],
+        "summary": "Find roles by id",
+        "description": "Return roles based on ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identify of a role",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "style": "label"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "id": "6e72b093-2d9a-4bde-a935-5c74f9fc33a8",
+                    "name": "Administrator",
+                    "created_at": "2022-11-26T16:44:52.000Z"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "404": {
+            "description": "Role not found."
+          }
+        }
       }
     }
   }
