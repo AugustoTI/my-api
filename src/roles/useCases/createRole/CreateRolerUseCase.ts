@@ -9,8 +9,8 @@ interface CreateRoleDTO {
 export class CreateRoleUseCase {
   constructor(private _rolesRepository: RoleRepository) {}
 
-  execute({ name }: CreateRoleDTO) {
-    const roleAlreadyExists = this._rolesRepository.findByName(name)
+  async execute({ name }: CreateRoleDTO) {
+    const roleAlreadyExists = await this._rolesRepository.findByName(name)
 
     if (roleAlreadyExists) {
       throw new AppError('Role already exists')
