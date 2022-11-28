@@ -1,12 +1,17 @@
 import { RoleRepository } from '@roles/repositories/RolesRepository'
 import { AppError } from '@shared/errors/AppError'
+import { inject, injectable } from 'tsyringe'
 
 interface ShowRoleParams {
   id: string
 }
 
+@injectable()
 export class ShowRoleUseCase {
-  constructor(private _rolesRepository: RoleRepository) {}
+  constructor(
+    @inject('RoleRepository')
+    private _rolesRepository: RoleRepository,
+  ) {}
 
   async execute({ id }: ShowRoleParams) {
     const role = this._rolesRepository.findById(id)
