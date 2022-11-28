@@ -10,7 +10,7 @@ interface UpdateRoleDTO {
 @injectable()
 export class UpdateRoleUseCase {
   constructor(
-    @inject('RoleRepository')
+    @inject('RolesRepository')
     private _rolesRepository: RoleRepository,
   ) {}
 

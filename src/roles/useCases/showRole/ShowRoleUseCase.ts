@@ -9,7 +9,7 @@ interface ShowRoleParams {
 @injectable()
 export class ShowRoleUseCase {
   constructor(
-    @inject('RoleRepository')
+    @inject('RolesRepository')
     private _rolesRepository: RoleRepository,
   ) {}
 
