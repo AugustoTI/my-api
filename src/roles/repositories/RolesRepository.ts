@@ -1,40 +1,18 @@
 import { Role } from '@roles/entities/role'
 import { dataSource } from '@shared/typeorm'
 import { Repository } from 'typeorm'
+import {
+  CreateRoleDTO,
+  IRoleRepository,
+  PaginateParams,
+  RolesPaginateProperties,
+} from './IRoleRepository'
 
-// DTO = Data Transfer Object
-interface CreateRoleDTO {
-  name: string
-}
-
-export interface PaginateParams {
-  page: number
-  skip: number
-  take: number
-}
-
-export interface RolesPaginateProperties {
-  per_page: number
-  total: number
-  current_page: number
-  data: Role[]
-}
-
-export class RoleRepository {
+export class RoleRepository implements IRoleRepository {
   private _repository: Repository<Role>
-  private static INSTANCE: RoleRepository
 
-  private constructor() {
+  constructor() {
     this._repository = dataSource.getRepository(Role)
-  }
-
-  static getInstance() {
-    if (!RoleRepository.INSTANCE) {
-      RoleRepository.INSTANCE = new RoleRepository()
-      return RoleRepository.INSTANCE
-    }
-
-    return RoleRepository.INSTANCE
   }
 
   async create({ name }: CreateRoleDTO) {

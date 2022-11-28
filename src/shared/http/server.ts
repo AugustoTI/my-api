@@ -9,6 +9,7 @@ import { AppError } from '@shared/errors/AppError'
 import swaggerFile from '../../swagger.json'
 import { dataSource } from '@shared/typeorm'
 import { errors } from 'celebrate'
+import '@shared/container'
 
 const server = express()
 
