@@ -5,7 +5,6 @@ import {
   Entity,
   ManyToOne,
   PrimaryGeneratedColumn,
-  Repository,
 } from 'typeorm'
 
 @Entity('users')
@@ -23,7 +22,7 @@ export class User {
   @ManyToOne(() => Role, {
     cascade: true,
   })
-  role: Repository<Role>
+  role: Role
   @Column({ default: false })
   isAdmin: boolean
   @CreateDateColumn()
