@@ -18,7 +18,7 @@ export class User {
   @Column()
   password: string
   @Column({ nullable: true })
-  avatar: string
+  avatar?: string
   @ManyToOne(() => Role, {
     cascade: true,
   })

@@ -31,8 +31,8 @@ export class UsersRepository implements IUsersRepository {
     take,
   }: PaginateParams): Promise<UsersPaginateProperties> {
     const [users, count] = await this.repository
-      .createQueryBuilder('r')
-      .leftJoinAndSelect('r.role', 'role')
+      .createQueryBuilder('users')
+      .leftJoinAndSelect('users.role', 'role')
       .skip(skip)
       .take(take)
       .getManyAndCount()
