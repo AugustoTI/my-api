@@ -1,4 +1,5 @@
 import { Role } from '@roles/entities/role'
+import { Exclude } from 'class-transformer'
 import {
   Column,
   CreateDateColumn,
@@ -16,6 +17,7 @@ export class User {
   @Column({ unique: true })
   email: string
   @Column()
+  @Exclude()
   password: string
   @Column({ nullable: true })
   avatar?: string

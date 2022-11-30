@@ -1,6 +1,7 @@
 import { CreateUserUseCase } from './CreateUserUseCase'
 import { Request, Response } from 'express'
 import { container } from 'tsyringe'
+import { instanceToInstance } from 'class-transformer'
 
 export class CreateUserController {
   async handle(req: Request, res: Response) {
@@ -15,6 +16,6 @@ export class CreateUserController {
       roleId,
     })
 
-    return res.status(201).json(user)
+    return res.status(201).json(instanceToInstance(user))
   }
 }
