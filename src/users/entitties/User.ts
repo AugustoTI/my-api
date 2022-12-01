@@ -23,6 +23,8 @@ export class User {
   avatar?: string
   @ManyToOne(() => Role, {
     cascade: true,
+    onDelete: 'SET NULL',
+    nullable: true,
   })
   role: Role
   @Column({ default: false })
