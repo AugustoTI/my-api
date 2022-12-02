@@ -4,7 +4,7 @@ import { UsersRepository } from '@users/repositories/UserRepository'
 import { hash } from 'bcryptjs'
 import { inject, injectable } from 'tsyringe'
 
-export interface CreateUserDTO {
+interface CreateUserDTO {
   name: string
   email: string
   password: string
