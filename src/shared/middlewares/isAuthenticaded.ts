@@ -1,7 +1,11 @@
 import auth from '@config/auth'
 import { AppError } from '@shared/errors/AppError'
 import { NextFunction, Request, Response } from 'express'
-import { Secret, verify } from 'jsonwebtoken'
+import { JwtPayload, verify } from 'jsonwebtoken'
+
+interface DecodedToken extends JwtPayload {
+  sub: string
+}
 
 export const isAuthenticated = async (
   req: Request,
@@ -16,7 +20,9 @@ export const isAuthenticated = async (
   const token = authHeader.replace('Bearer ', '')
 
   try {
-    verify(token, auth.jwt.secret as Secret)
+    const { sub } = verify(token, auth.jwt.secret) as DecodedToken
+    req.user = { id: sub }
+
     return next()
   } catch {
     throw new AppError('Invalid authentication token', 401)
