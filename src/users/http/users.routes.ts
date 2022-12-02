@@ -1,3 +1,4 @@
+import { isAuthenticated } from '@shared/middlewares/isAuthenticaded'
 import { CreateLoginController } from '@users/useCases/createLogin/CreateLoginController'
 import { CreateUserController } from '@users/useCases/createUser/CreateUserController'
 import { ListUsersController } from '@users/useCases/listUsers/ListUsersController'
@@ -12,6 +13,7 @@ const createLoginController = container.resolve(CreateLoginController)
 
 usersRouter.post(
   '/',
+  isAuthenticated,
   celebrate({
     [Segments.BODY]: {
       name: Joi.string().required(),
@@ -28,6 +30,7 @@ usersRouter.post(
 
 usersRouter.get(
   '/',
+  isAuthenticated,
   celebrate({
     [Segments.QUERY]: {
       page: Joi.number(),
