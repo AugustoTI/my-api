@@ -45,7 +45,7 @@ usersRouter.get(
 usersRouter.post(
   '/login',
   celebrate({
-    [Segments.QUERY]: {
+    [Segments.BODY]: {
       email: Joi.string().email().required(),
       password: Joi.string().required(),
     },
