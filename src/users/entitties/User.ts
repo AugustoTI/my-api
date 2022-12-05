@@ -1,5 +1,5 @@
 import { Role } from '@roles/entities/role'
-import { Exclude } from 'class-transformer'
+import { Exclude, Expose } from 'class-transformer'
 import {
   Column,
   CreateDateColumn,
@@ -31,4 +31,13 @@ export class User {
   isAdmin: boolean
   @CreateDateColumn()
   created_at: Date
+
+  @Expose({ name: 'avatar_url' })
+  getAvatarUrl() {
+    if (!this.avatar) {
+      return null
+    }
+
+    return `${process.env.AVATAR_URL}/${this.avatar}`
+  }
 }

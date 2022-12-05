@@ -4,7 +4,7 @@
 .vscode/
 tsconfig.tsbuildinfo
 
-uploads/*
+uploads/
 !uploads/.gitkeep
 db.sqlite
 
