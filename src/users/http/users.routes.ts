@@ -9,6 +9,7 @@ import multer from 'multer'
 import { container } from 'tsyringe'
 import { UpdateAvatarController } from '@users/useCases/updateAvatar/UpdateAvatarController'
 import { ShowProfileController } from '@users/useCases/showProfile/ShowProfileController'
+import { UpdateProfileController } from '@users/useCases/updateProfile/UpdateProfileController'
 
 const usersRouter = Router()
 const createUserController = container.resolve(CreateUserController)
@@ -16,6 +17,7 @@ const listUsersController = container.resolve(ListUsersController)
 const createLoginController = container.resolve(CreateLoginController)
 const updateAvatarController = container.resolve(UpdateAvatarController)
 const showProfileController = container.resolve(ShowProfileController)
+const updateProfileController = container.resolve(UpdateProfileController)
 
 const upload = multer(uploadConfig)
 
@@ -75,5 +77,27 @@ usersRouter.patch(
 usersRouter.get('/profile', isAuthenticated, (req, res) => {
   return showProfileController.handle(req, res)
 })
+
+usersRouter.put(
+  '/profile',
+  isAuthenticated,
+  celebrate({
+    [Segments.BODY]: {
+      name: Joi.string().required(),
+      email: Joi.string().email().required(),
+      old_password: Joi.string(),
+      password: Joi.string().optional(),
+      password_confirmation: Joi.string()
+        .valid(Joi.ref('password'))
+        .when('password', {
+          is: Joi.exist(),
+          then: Joi.required(),
+        }),
+    },
+  }),
+  (req, res) => {
+    return updateProfileController.handle(req, res)
+  },
+)
 
 export { usersRouter }
