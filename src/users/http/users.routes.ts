@@ -8,12 +8,14 @@ import { Router } from 'express'
 import multer from 'multer'
 import { container } from 'tsyringe'
 import { UpdateAvatarController } from '@users/useCases/updateAvatar/UpdateAvatarController'
+import { ShowProfileController } from '@users/useCases/showProfile/ShowProfileController'
 
 const usersRouter = Router()
 const createUserController = container.resolve(CreateUserController)
 const listUsersController = container.resolve(ListUsersController)
 const createLoginController = container.resolve(CreateLoginController)
 const updateAvatarController = container.resolve(UpdateAvatarController)
+const showProfileController = container.resolve(ShowProfileController)
 
 const upload = multer(uploadConfig)
 
@@ -69,5 +71,9 @@ usersRouter.patch(
     return updateAvatarController.handle(req, res)
   },
 )
+
+usersRouter.get('/profile', isAuthenticated, (req, res) => {
+  return showProfileController.handle(req, res)
+})
 
 export { usersRouter }
