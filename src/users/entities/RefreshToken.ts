@@ -16,7 +16,7 @@ export class RefreshToken {
   @Column()
   user_id: string
 
-  @Column()
+  @Column({ default: true })
   valid: boolean
 
   @Column()
