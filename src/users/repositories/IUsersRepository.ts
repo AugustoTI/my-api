@@ -1,5 +1,5 @@
 import { Role } from '@roles/entities/role'
-import { User } from '@users/entitties/User'
+import { User } from '@users/entities/User'
 
 export interface CreateUserDTO {
   name: string

@@ -1,5 +1,5 @@
 import { dataSource } from '@shared/typeorm'
-import { User } from '@users/entitties/User'
+import { User } from '@users/entities/User'
 import { Repository } from 'typeorm'
 import {
   CreateUserDTO,
