@@ -1,6 +1,6 @@
 import { RefreshToken } from '@users/entities/RefreshToken'
 
-interface CreateRefreshTokenDTO {
+export interface CreateRefreshTokenDTO {
   token: string
   valid: boolean
   user_id: string
