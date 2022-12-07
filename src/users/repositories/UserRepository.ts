@@ -1,6 +1,5 @@
 import { dataSource } from '@shared/typeorm'
 import { User } from '@users/entities/User'
-import { Repository } from 'typeorm'
 import {
   CreateUserDTO,
   IUsersRepository,
@@ -9,11 +8,7 @@ import {
 } from './IUsersRepository'
 
 export class UsersRepository implements IUsersRepository {
-  private repository: Repository<User>
-
-  constructor() {
-    this.repository = dataSource.getRepository(User)
-  }
+  private repository = dataSource.getRepository(User)
 
   async create(data: CreateUserDTO): Promise<User> {
     const user = this.repository.create(data)

@@ -1,4 +1,4 @@
-import { Role } from '@roles/entities/role'
+import { Role } from '@roles/entities/Role'
 import { Exclude, Expose } from 'class-transformer'
 import {
   Column,

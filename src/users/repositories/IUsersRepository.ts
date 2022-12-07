@@ -1,4 +1,4 @@
-import { Role } from '@roles/entities/role'
+import { Role } from '@roles/entities/Role'
 import { User } from '@users/entities/User'
 
 export interface CreateUserDTO {

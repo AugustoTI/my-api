@@ -1,4 +1,4 @@
-import { Role } from '@roles/entities/role'
+import { Role } from '@roles/entities/Role'
 
 // DTO = Data Transfer Object
 export interface CreateRoleDTO {

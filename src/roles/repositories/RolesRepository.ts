@@ -1,6 +1,5 @@
-import { Role } from '@roles/entities/role'
+import { Role } from '@roles/entities/Role'
 import { dataSource } from '@shared/typeorm'
-import { Repository } from 'typeorm'
 import {
   CreateRoleDTO,
   IRoleRepository,
@@ -9,35 +8,31 @@ import {
 } from './IRoleRepository'
 
 export class RoleRepository implements IRoleRepository {
-  private _repository: Repository<Role>
-
-  constructor() {
-    this._repository = dataSource.getRepository(Role)
-  }
+  private repository = dataSource.getRepository(Role)
 
   async create({ name }: CreateRoleDTO) {
-    const role = this._repository.create({ name })
-    return this._repository.save(role)
+    const role = this.repository.create({ name })
+    return this.repository.save(role)
   }
 
   async save(role: Role) {
-    return this._repository.save(role)
+    return this.repository.save(role)
   }
 
   async delete(role: Role) {
-    await this._repository.remove(role)
+    await this.repository.remove(role)
   }
 
   async findByName(name: string) {
-    return this._repository.findOneBy({ name })
+    return this.repository.findOneBy({ name })
   }
 
   async findById(id: string) {
-    return this._repository.findOneBy({ id })
+    return this.repository.findOneBy({ id })
   }
 
   async findAll({ page, skip, take }: PaginateParams) {
-    const [roles, count] = await this._repository
+    const [roles, count] = await this.repository
       .createQueryBuilder()
       .skip(skip)
       .take(take)
