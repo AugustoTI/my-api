@@ -1,5 +1,4 @@
 import auth from '@config/auth'
-import { AppError } from '@shared/errors/AppError'
 import { NextFunction, Request, Response } from 'express'
 import { JwtPayload, verify } from 'jsonwebtoken'
 
@@ -14,7 +13,11 @@ export const isAuthenticated = async (
 ) => {
   const authHeader = req.headers.authorization
   if (!authHeader) {
-    throw new AppError('Failed to verify access token', 401)
+    return res.status(401).json({
+      error: true,
+      code: 'token.invalid',
+      message: 'Failed to verify access token',
+    })
   }
 
   const token = authHeader.replace('Bearer ', '')
@@ -25,6 +28,10 @@ export const isAuthenticated = async (
 
     return next()
   } catch {
-    throw new AppError('Invalid authentication token', 401)
+    return res.status(401).json({
+      error: true,
+      code: 'token.expired',
+      message: 'Invalid authentication token',
+    })
   }
 }

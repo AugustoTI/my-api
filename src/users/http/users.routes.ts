@@ -1,4 +1,4 @@
-import { isAuthenticated } from '@shared/middlewares/isAuthenticaded'
+import { isAuthenticated } from '@shared/middlewares/isAuthenticated'
 import { CreateLoginController } from '@users/useCases/createLogin/CreateLoginController'
 import { CreateUserController } from '@users/useCases/createUser/CreateUserController'
 import { ListUsersController } from '@users/useCases/listUsers/ListUsersController'

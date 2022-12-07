@@ -6,7 +6,7 @@ import { ListRolesController } from '@roles/useCases/listRoles/ListRolesControll
 import { ShowRoleController } from '@roles/useCases/showRole/ShowRoleController'
 import { DeleteRoleController } from '@roles/useCases/deleteRole/DeleteRoleController'
 import { UpdateRoleController } from '@roles/useCases/updateRole/UpdateRoleController'
-import { isAuthenticated } from '@shared/middlewares/isAuthenticaded'
+import { isAuthenticated } from '@shared/middlewares/isAuthenticated'
 
 const rolesRouter = Router()
 const createRoleController = container.resolve(CreateRoleController)
