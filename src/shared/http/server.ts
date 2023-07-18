@@ -1,5 +1,5 @@
-import 'dotenv/config'
 import 'reflect-metadata'
+import 'dotenv/config'
 import { dataSource } from '@shared/typeorm'
 import { server } from './app'
 
